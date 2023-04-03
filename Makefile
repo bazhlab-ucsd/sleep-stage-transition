@@ -32,6 +32,8 @@ network:
       else
         ifdef mri_network:
 	    ./generate_network $(network_config) $(mri_network)> connection_info2
+	    else:
+	    ./generate_network $(network_config)> connection_info2
 	    endif
 	  endif
 	endif
