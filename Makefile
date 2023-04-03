@@ -24,16 +24,16 @@ clean:
 
 network:
 	g++ -O2 generate_network.cpp -o generate_network
-    ifdef network_config:
-      ifdef 3D_subnet:
-        ifdef 3D_distance:
-	    ./generate_network $(network_config) $(3D_subnet) $(3D_distance)> connection_info2
-	    endif
-      else
-        ifdef mri_network:
-	    ./generate_network $(network_config) $(mri_network)> connection_info2
-	    else:
-	    ./generate_network $(network_config)> connection_info2
-	    endif
-	  endif
+
+    ifdef $(network_config && 3D_subnet && 3D_distance)
+	./generate_network $(network_config) $(3D_subnet) $(3D_distance)> connection_info2
+	endif
+
+
+    ifdef $(mri_network)
+	./generate_network $(network_config) $(mri_network)> connection_info2
+	endif
+
+	ifdef $(network_config)
+	./generate_network $(network_config)> connection_info2
 	endif
