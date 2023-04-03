@@ -1,6 +1,6 @@
 # Cellular and Neurochemical Basis of Sleep Stages in the Thalamocortical Network
 
-This project reproduces the results of [Cellular and neurochemical basis of sleep stages in the thalamocortical network](https://doi.org/10.7554/eLife.18607.). The study investigated how acetylcholine, histamine, GABA, and monoamines interact with shifting the brain between waking, non-rapid eye movement (NREM) sleep and rapid eye movement (REM) sleep within an ultradian cycle.
+This project reproduces the results of [Cellular and neurochemical basis of sleep stages in the thalamocortical network](https://elifesciences.org/articles/18607). The study investigated how acetylcholine, histamine, GABA, and monoamines interact with shifting the brain between waking, non-rapid eye movement (NREM) sleep and rapid eye movement (REM) sleep within an ultradian cycle.
 
 ## Usage
 
