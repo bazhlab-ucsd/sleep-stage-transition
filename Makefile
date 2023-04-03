@@ -24,4 +24,7 @@ clean:
 
 network:
 	g++ -O2 generate_network.cpp -o generate_network
-	./generate_network > connection_info2
+	./generate_network $(network_config) $(mri_network) $(3D_subnet) $(3D_distance)> connection_info2
+
+
+
