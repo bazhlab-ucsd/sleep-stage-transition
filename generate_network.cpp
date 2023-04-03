@@ -563,27 +563,4 @@ int main(int argc, char *argv[]){
 	//CT.dump();
 	//CN.dump();
 	return 0;
-}int main(int argc, char *argv[]){
-	if (argc==1){
-		throw std::invalid_argument("At least network configuration file should be provided");
-	}
-	char const *file  = argv[1];
-	parse_config(file);
-	//any commandline parameter taken as network connections file
-	if (argc==3)
-		CE.load_MRI_network(argv[2]); 		//connection file we get verbatim from ucsd group
-	else if (argc==4) {				//partly processed data from ucsd folks - only subnet and distances given
-		load_3D_subnet(argv[3]);
-		load_3D_distances(argv[2]);
-		CE.generate_3D_connections();
-	} else
-		CE.generate_connections(); 		//our own random connectivity
-
-	CE.apply_synaptic_types();	//needed in case we need sample parameters for strength/mini_X parameters
-	//CE.dump_from_neuron_edges(4,20,20);
-	//CE.dump_from_neuron_edges(0,0,0,2);
-	CE.write_connections();
-	//CT.dump();
-	//CN.dump();
-	return 0;
 }
