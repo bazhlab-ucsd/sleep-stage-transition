@@ -1,6 +1,11 @@
 #include "CellSyn.h"
 
 
+double get_stim(double t, int type){
+  return 0.0; 
+}
+
+
 CellSyn::CellSyn(int i,int j,int b_size,int t_size,Cell_Info *cell_info,int type){    
 
   rand_buffer = new drand48_data;
@@ -321,15 +326,28 @@ void CellSyn::calc(double x, double *y_ini, double *f_ini, int step){
 	}
   }
 
-  // if ( (x>6000 && x<6100) && (this->type==E_TC) ) {
-  // 	  current=current + 1.25;
+  // if ( (x>cx_stim_start && x<cx_stim_end) && (this->type == E_CX) && (stim_CX) ) {
+  // 	  current=current + cx_stim_strength;
   // }
 
-  // if (  (this->type==E_TC) ) {
-  //   if ( (x>(awake_end-5000) && x<(awake_end-4900) ) )
-  //     current=current + 1.5;
-  // }
+  current = current + get_stim(x, this->type);
+  
+  if (  (this->type==E_CX) && (x>stim_cx_start) && (x>stim_cx_end) && (this->m > stim_cx_start_neuron) && (this->m < stim_cx_end_neuron) ) {
+	current=current + stim_cx_strength;
+  }
 
+  if (  (this->type==E_IN) && (x>stim_in_start) && (x>stim_in_end) && (this->m > stim_in_start_neuron) && (this->m < stim_in_end_neuron) ) {
+	current=current + stim_in_strength;
+  }
+
+  if (  (this->type==E_TC) && (x>stim_tc_start) && (x>stim_tc_end) && (this->m > stim_tc_start_neuron) && (this->m < stim_tc_end_neuron) ) {
+	current=current + stim_tc_strength;
+  }
+
+  if (  (this->type==E_RE) && (x>stim_re_start) && (x>stim_re_end) && (this->m > stim_re_start_neuron) && (this->m < stim_re_end_neuron) ) {
+	current=current + stim_re_strength;
+  }
+  
   // if (  (this->type==E_TC) ) {
   //   if ( (x>(REM_onset+5000) && x<(REM_onset+5100)) )
   //     current=current + 1.5;

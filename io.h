@@ -33,7 +33,27 @@ void load_input_params(
   double&  homeo_fre_boost,
   double&  homeo_target_f,
   int&  homeo_fre_window,
-  int&  homeo_num_regions
+  int&  homeo_num_regions,
+  double& stim_cx_start,
+  double& stim_cx_end,
+  double& stim_cx_strength,
+  int& stim_cx_start_neuron,
+  int& stim_cx_end_neuron,
+  double& stim_in_start,
+  double& stim_in_end,
+  double& stim_in_strength,
+  int& stim_in_start_neuron,
+  int& stim_in_end_neuron,
+  double& stim_tc_start,
+  double& stim_tc_end,
+  double& stim_tc_strength,
+  int& stim_tc_start_neuron,
+  int& stim_tc_end_neuron,
+  double& stim_re_start,
+  double& stim_re_end,
+  double& stim_re_strength,
+  int& stim_re_start_neuron,
+  int& stim_re_end_neuron);
 
- );
+
 

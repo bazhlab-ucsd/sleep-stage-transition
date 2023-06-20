@@ -7,7 +7,7 @@ This project reproduces the results of [Cellular and neurochemical basis of slee
 The code is implemented in C++ and uses OpenMP multi-core parallelism to optimize the code's performance.
 To generate the network connectivity file, navigate to the root directory of the project and run the following command: 
 
-`make network`
+`make network network_config=network.cfg`
 
 To run the simulation, use the following command:
 

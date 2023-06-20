@@ -23,7 +23,27 @@ void load_input_params(
   double&  homeo_fre_boost,
   double&  homeo_target_f,
   int&  homeo_fre_window,
-  int&  homeo_num_regions
+  int&  homeo_num_regions,
+  double& stim_cx_start,
+  double& stim_cx_end,
+  double& stim_cx_strength,
+  int& stim_cx_start_neuron,
+  int& stim_cx_end_neuron,
+  double& stim_in_start,
+  double& stim_in_end,
+  double& stim_in_strength,
+  int& stim_in_start_neuron,
+  int& stim_in_end_neuron,
+  double& stim_tc_start,
+  double& stim_tc_end,
+  double& stim_tc_strength,
+  int& stim_tc_start_neuron,
+  int& stim_tc_end_neuron,
+  double& stim_re_start,
+  double& stim_re_end,
+  double& stim_re_strength,
+  int& stim_re_start_neuron,
+  int& stim_re_end_neuron
 
  ){
   
@@ -43,6 +63,30 @@ void load_input_params(
   add_double_param(  homeo_target_f   );
   add_int_param(  homeo_fre_window    );
   add_int_param(  homeo_num_regions   );
+
+  add_double_param(  stim_cx_start  );
+  add_double_param(  stim_cx_end  );
+  add_double_param(  stim_cx_strength  );
+  add_int_param(  stim_cx_start_neuron   );
+  add_int_param(  stim_cx_end_neuron   );
+ 
+  add_double_param(  stim_in_start  );
+  add_double_param(  stim_in_end  );
+  add_double_param(  stim_in_strength  );
+  add_int_param(  stim_in_start_neuron   );
+  add_int_param(  stim_in_end_neuron   );
+
+  add_double_param(  stim_tc_start  );
+  add_double_param(  stim_tc_end  );
+  add_double_param(  stim_tc_strength  );
+  add_int_param(  stim_tc_start_neuron   );
+  add_int_param(  stim_tc_end_neuron   );
+
+  add_double_param(  stim_re_start  );
+  add_double_param(  stim_re_end  );
+  add_double_param(  stim_re_strength  );
+  add_int_param(  stim_re_start_neuron   );
+  add_int_param(  stim_re_end_neuron   );
 
   assert(load_parameters(argv[1]));
   assert(cmdline_parameters(argc,argv));

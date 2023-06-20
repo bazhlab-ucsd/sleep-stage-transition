@@ -41,6 +41,10 @@ using namespace std;
 #define TAU_Map  0.5  // time step for maps
 #define TAUr     25   //(TAU_Map/TAU)
 
+extern double stim_cx_start, stim_cx_end, stim_cx_strength, stim_in_start, stim_in_end, stim_in_strength, stim_tc_start, stim_tc_end, stim_tc_strength, stim_re_start, stim_re_end, stim_re_strength; 
+
+extern int stim_cx_start_neuron, stim_cx_end_neuron, stim_in_start_neuron, stim_in_end_neuron,  stim_tc_start_neuron, stim_tc_end_neuron, stim_re_start_neuron, stim_re_end_neuron;
+
 
 //information about each cell as read from network file. CellSyn contain members relater rather to computation
 typedef struct{
@@ -883,6 +887,7 @@ void boost_activity();
 void start_critical();
 void end_critical();
 void root_critical();
+double get_stim(double t, int type);
 int receive_spike(int m, int n, enum Cell_Type type);
 int receive_spike_for_maps(int m, int n, enum Cell_Type type);
 double receive_dend(int my_type,int m, int n, enum Cell_Type type);
