@@ -332,19 +332,19 @@ void CellSyn::calc(double x, double *y_ini, double *f_ini, int step){
 
   current = current + get_stim(x, this->type);
   
-  if (  (this->type==E_CX) && (x>stim_cx_start) && (x>stim_cx_end) && (this->m > stim_cx_start_neuron) && (this->m < stim_cx_end_neuron) ) {
+  if (  (this->type==E_CX) && (x>stim_cx_start) && (x<stim_cx_end) && (this->m > stim_cx_start_neuron) && (this->m < stim_cx_end_neuron) ) {
 	current=current + stim_cx_strength;
   }
 
-  if (  (this->type==E_IN) && (x>stim_in_start) && (x>stim_in_end) && (this->m > stim_in_start_neuron) && (this->m < stim_in_end_neuron) ) {
+  if (  (this->type==E_IN) && (x>stim_in_start) && (x<stim_in_end) && (this->m > stim_in_start_neuron) && (this->m < stim_in_end_neuron) ) {
 	current=current + stim_in_strength;
   }
 
-  if (  (this->type==E_TC) && (x>stim_tc_start) && (x>stim_tc_end) && (this->m > stim_tc_start_neuron) && (this->m < stim_tc_end_neuron) ) {
+  if (  (this->type==E_TC) && (x>stim_tc_start) && (x<stim_tc_end) && (this->m > stim_tc_start_neuron) && (this->m < stim_tc_end_neuron) ) {
 	current=current + stim_tc_strength;
   }
 
-  if (  (this->type==E_RE) && (x>stim_re_start) && (x>stim_re_end) && (this->m > stim_re_start_neuron) && (this->m < stim_re_end_neuron) ) {
+  if (  (this->type==E_RE) && (x>stim_re_start) && (x<stim_re_end) && (this->m > stim_re_start_neuron) && (this->m < stim_re_end_neuron) ) {
 	current=current + stim_re_strength;
   }
   
