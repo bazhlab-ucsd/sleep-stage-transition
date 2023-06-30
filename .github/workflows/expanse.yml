@@ -1,7 +1,9 @@
 name: Deploy on push 
 on:
  push:
-   branches: [ main ]
+   branches: 
+         - main
+         - stim
    
 jobs:
   build:
@@ -15,3 +17,5 @@ jobs:
          known_hosts: ${{ secrets.SSH_HOST }}
       -  name: Pull
          run: ssh scigap@login.expanse.sdsc.edu "cd /home/scigap/NeuroTest/sleep-stage-transition && /usr/bin/git pull origin main && cd /home/scigap/NeuroTest && sh copy.sh"
+      -  name: Pull stim
+         run: ssh scigap@login.expanse.sdsc.edu "cd /home/scigap/NeuroTest/sleep_stage-simon/sleep-stage-transition && /usr/bin/git pull origin stim && cd /home/scigap/NeuroTest && sh copy_stim.sh"
