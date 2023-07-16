@@ -109,3 +109,12 @@ stim_re_start_neuron 10
 
 #stimulation to re: end neuron
 stim_re_end_neuron 20
+
+#Awake Ach level
+ach_cx_awake 1.0
+
+#Awake Ach level
+ach_th_awake 1.0
+
+#Awake HA level
+ha_awake 1.0
