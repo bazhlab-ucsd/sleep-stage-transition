@@ -8,11 +8,11 @@ tmax 30000
 t3D 0
 
 #ttime also has to do with when to start prints
-ttime 0
+ttime 
 
 #num_mp_threads number of openMP threads (ignored for mpi runs)
 #TODO one disturbing issue with the current code is that setting different value, e.g. 1, will output different results.
-num_mp_threads 12 
+num_mp_threads 11
 
 #print_c_sten if 1 prints all the connection strengths for cx every once in awile (note this only works with openmp)
 print_c_sten 0
