@@ -56,6 +56,14 @@ extern double fac_AMPA_TC;
 extern double fac_GABA_D2;
 extern double fac_GABA_TC;
 
+extern double G_Ca_re_inp;
+extern double G_Ca_tc_inp;
+
+extern double G_l_re_inp;
+extern double G_l_tc_inp;
+
+extern double E_l_tc_inp;
+
 ////////
 
 class BaseCell{

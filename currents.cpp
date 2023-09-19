@@ -90,7 +90,7 @@ void IT_RE::calc(double m, double h, double &fm, double &fh,
   ratio = Ca_0/cai;
   if(ratio <= 0.)printf("\n LOG ERROR: RE: cai=%lf ratio=%lf",cai,ratio);
   eca = eca0 * log(ratio);
-  iT = G_Ca*m*m*h*(v - eca);                              
+  iT = G_Ca_re_inp*m*m*h*(v - eca);                              
   m_inf = 1/(1 + exp(-(v + 52)/7.4));
   tau_m = (3 + 1/(exp((v + 27)/10) + exp(-(v + 102)/15)))/Phi_m;
   h_inf = 1/(1 + exp((v + 80)/5));
@@ -148,7 +148,7 @@ void IT_TC::calc(double m, double h, double &fm, double &fh,
   ratio = Ca_0/cai;
   if(ratio <= 0.)printf("\n LOG ERROR: TC: cai=%lf ratio=%lf",cai,ratio);
   eca = eca0 * log(ratio);
-  iT = G_Ca*m*m*h*(v - eca); 
+  iT = G_Ca_tc_inp*m*m*h*(v - eca); 
 
   m_inf = 1 / (1+exp(-(v+59)/6.2));//////////////////////////////////////
   h_inf = 1 / (1+exp((v+83)/4.)); /////////////////////////////////////
@@ -1028,7 +1028,7 @@ void RE::calc(double x, double I, double *y, double *f){
   INaK::calc(y[4], y[5], y[6], f[4], f[5], f[6], y[0], x);
   ICa::calc(y[1], f[1], iT, x);
 
-  f[0] = -G_l * (y[0] - E_l) - iT - iNa - iK - fac_gkl_RE * G_kl * (y[0] - INaK::E_K) + I;
+  f[0] = -G_l_re_inp * (y[0] - E_l) - iT - iNa - iK - fac_gkl_RE * G_kl * (y[0] - INaK::E_K) + I;
 
   v_DEND = v_SOMA = y[0];
 
@@ -1047,7 +1047,7 @@ void TC::calc(double x, double I, double *y, double *f){
   ICa::calc(y[1], f[1], iT, x);
 
 
-  f[0] = -G_l * (y[0] - E_l)  - iNa - iK - ih - iT - iA - fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I +DC;
+  f[0] = -G_l_tc_inp * (y[0] - E_l_tc_inp)  - iNa - iK - ih - iT - iA - fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I +DC;
   // f[0] = -G_l * (y[0] - E_l) - iT -  ih - iNa - iK - iA -  G_kl * (y[0] - INaK::E_K) + I +DC;
   v_DEND = v_SOMA = y[0];
 

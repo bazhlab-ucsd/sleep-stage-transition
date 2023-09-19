@@ -8,7 +8,7 @@ tmax 30000
 t3D 0
 
 #ttime also has to do with when to start prints
-ttime 
+ttime 0 
 
 #num_mp_threads number of openMP threads (ignored for mpi runs)
 #TODO one disturbing issue with the current code is that setting different value, e.g. 1, will output different results.
@@ -118,3 +118,18 @@ ach_th_awake 1.0
 
 #Awake HA level
 ha_awake 1.0
+
+#Ca RE cell conductance
+G_Ca_re_inp 1.75 
+
+#Ca TC cell conductance
+G_Ca_tc_inp 20.0
+
+#RE leak conductance
+G_l_re_inp 0.05
+
+#TC leak conductance
+G_l_tc_inp 0.08
+
+#TC reversal potential
+E_l_tc_inp -75.0
