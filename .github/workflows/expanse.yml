@@ -1,0 +1,31 @@
+name: Deploy on push 
+on:
+ push:
+   branches: 
+         - main
+         - stim
+jobs:
+  build-main:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+         key: ${{ secrets.EXPANSE_KEY }}
+         name: id_rsa
+         known_hosts: ${{ secrets.SSH_HOST }}
+      -  name: Pull
+         run: ssh scigap@login.expanse.sdsc.edu "cd /home/scigap/NeuroTest/sleep-stage-transition && /usr/bin/git pull origin main && cd /home/scigap/NeuroTest && sh copy.sh"
+  build-stim:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/stim'
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+         key: ${{ secrets.EXPANSE_KEY }}
+         name: id_rsa
+         known_hosts: ${{ secrets.SSH_HOST }}
+      -  name: Pull
+         run: ssh scigap@login.expanse.sdsc.edu "cd /home/scigap/NeuroTest/sleep_stage-simon/sleep-stage-transition && /usr/bin/git pull origin stim && cd /home/scigap/NeuroTest && sh copy_stim.sh"
