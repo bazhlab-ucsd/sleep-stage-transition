@@ -56,13 +56,7 @@ void load_input_params(
   int& stim_re_end_neuron,
   double& ach_cx_awake,
   double& ach_th_awake,
-  double& ha_awake,
-  double& G_Ca_re_inp,
-  double& G_Ca_tc_inp,
-  double& G_l_re_inp,
-  double& G_l_tc_inp,
-  double& E_l_tc_inp
-
+  double& ha_awake
 );
 
 

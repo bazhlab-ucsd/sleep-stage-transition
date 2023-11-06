@@ -41,8 +41,8 @@ using namespace std;
 #define TAU_Map  0.5  // time step for maps
 #define TAUr     25   //(TAU_Map/TAU)
 
-extern double stim_cx_start, stim_cx_end, stim_cx_strength, stim_in_start, stim_in_end, stim_in_strength, stim_tc_start, stim_tc_end, stim_tc_strength, stim_re_start, stim_re_end, stim_re_strength, G_Ca_re_inp, G_Ca_tc_inp, G_l_re_inp, G_l_tc_inp, E_l_tc_inp; 
- 
+extern double stim_cx_start, stim_cx_end, stim_cx_strength, stim_in_start, stim_in_end, stim_in_strength, stim_tc_start, stim_tc_end, stim_tc_strength, stim_re_start, stim_re_end, stim_re_strength; 
+
 extern int stim_cx_start_neuron, stim_cx_end_neuron, stim_in_start_neuron, stim_in_end_neuron,  stim_tc_start_neuron, stim_tc_end_neuron, stim_re_start_neuron, stim_re_end_neuron;
 
 
