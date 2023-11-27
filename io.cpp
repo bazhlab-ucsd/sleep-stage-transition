@@ -46,7 +46,8 @@ void load_input_params(
   int& stim_re_end_neuron,
   double& ach_cx_awake,
   double& ach_th_awake,
-  double& ha_awake
+  double& ha_awake,
+  double& dc_tc
 
  ){
   
@@ -93,6 +94,7 @@ void load_input_params(
   add_double_param(  ach_cx_awake  );
   add_double_param(  ach_th_awake  );
   add_double_param(  ha_awake  );
+  add_double_param(  dc_tc  );
 
   assert(load_parameters(argv[1]));
   assert(cmdline_parameters(argc,argv));

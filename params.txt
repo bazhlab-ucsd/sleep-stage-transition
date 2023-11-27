@@ -118,3 +118,6 @@ ach_th_awake 1.0
 
 #Awake HA level
 ha_awake 1.0
+
+#DC TC
+dc_tc 0.0
