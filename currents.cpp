@@ -1046,8 +1046,7 @@ void TC::calc(double x, double I, double *y, double *f){
   IA_TC::calc(y[10], y[11], f[10], f[11], y[0], x);
   ICa::calc(y[1], f[1], iT, x);
 
-
-  f[0] = -G_l * (y[0] - E_l)  - iNa - iK - ih - 2.0*iT - iA - 1. * fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I +DC;
+  f[0] = -G_l * (y[0] - E_l)  - iNa - iK - ih - 2.0*iT - iA - 1. * fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I +DC + DC_TC;
   // f[0] = -G_l * (y[0] - E_l) - iT -  ih - iNa - iK - iA -  G_kl * (y[0] - INaK::E_K) + I +DC;
   v_DEND = v_SOMA = y[0];
 
