@@ -2,7 +2,7 @@
 #New param has to be added to io.h/cpp
 
 #tmax how long the program runs(millisec)
-tmax 10000
+tmax 7000
 
 #t3d when to start prints
 t3D 0
@@ -12,7 +12,7 @@ ttime 0
 
 #num_mp_threads number of openMP threads (ignored for mpi runs)
 #TODO one disturbing issue with the current code is that setting different value, e.g. 1, will output different results.
-num_mp_threads 12 
+num_mp_threads 30 
 
 #print_c_sten if 1 prints all the connection strengths for cx every once in awile (note this only works with openmp)
 print_c_sten 0
@@ -51,10 +51,10 @@ homeo_fre_window 10000000
 homeo_num_regions 100
 
 #stimulation to cx: start time
-stim_cx_start 8000
+stim_cx_start 6000
 
 #stimulation to cx: end time
-stim_cx_end 8002
+stim_cx_end 6002
 
 #stimulation to cx: strength
 stim_cx_strength 100.0
@@ -66,10 +66,10 @@ stim_cx_start_neuron 125
 stim_cx_end_neuron 375
 
 #stimulation to in: start time
-stim_in_start 8000
+stim_in_start 6000
 
 #stimulation to in: end time
-stim_in_end 8002
+stim_in_end 6002
 
 #stimulation to in: strength
 stim_in_strength 100.0
@@ -114,10 +114,13 @@ stim_re_end_neuron 20
 ach_cx_awake 1.0
 
 #Awake Ach level
-ach_th_awake 1.0
+ach_th_awake 1.3
 
 #Awake HA level
 ha_awake 1.0
 
-#DC TC
-dc_tc 0.0
+# T current modulation for RE cells
+it_re_mod 0.5
+
+# T current modulation for TC cells
+it_tc_mod 1.0

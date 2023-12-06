@@ -47,7 +47,8 @@ void load_input_params(
   double& ach_cx_awake,
   double& ach_th_awake,
   double& ha_awake,
-  double& dc_tc
+  double& it_re_mod,
+  double& it_tc_mod
 
  ){
   
@@ -94,7 +95,8 @@ void load_input_params(
   add_double_param(  ach_cx_awake  );
   add_double_param(  ach_th_awake  );
   add_double_param(  ha_awake  );
-  add_double_param(  dc_tc  );
+  add_double_param(  it_re_mod  );
+  add_double_param(  it_tc_mod  );
 
   assert(load_parameters(argv[1]));
   assert(cmdline_parameters(argc,argv));

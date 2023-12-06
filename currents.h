@@ -56,8 +56,8 @@ extern double fac_AMPA_TC;
 extern double fac_GABA_D2;
 extern double fac_GABA_TC;
 
-
-extern double DC_TC; 
+extern double it_re_mod;
+extern double it_tc_mod;
 
 ////////
 

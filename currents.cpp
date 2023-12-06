@@ -1028,7 +1028,7 @@ void RE::calc(double x, double I, double *y, double *f){
   INaK::calc(y[4], y[5], y[6], f[4], f[5], f[6], y[0], x);
   ICa::calc(y[1], f[1], iT, x);
 
-  f[0] = -G_l * (y[0] - E_l) - iT - iNa - iK - fac_gkl_RE * G_kl * (y[0] - INaK::E_K) + I;
+  f[0] = -G_l * (y[0] - E_l) - it_re_mod*iT - iNa - iK - fac_gkl_RE * G_kl * (y[0] - INaK::E_K) + I;
 
   v_DEND = v_SOMA = y[0];
 
@@ -1046,7 +1046,9 @@ void TC::calc(double x, double I, double *y, double *f){
   IA_TC::calc(y[10], y[11], f[10], f[11], y[0], x);
   ICa::calc(y[1], f[1], iT, x);
 
-  f[0] = -G_l * (y[0] - E_l)  - iNa - iK - ih - 2.0*iT - iA - 1. * fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I +DC + DC_TC;
+  //f[0] = -G_l * (y[0] - E_l) - iT - iNa - iK - fac_gkl_RE * G_kl * (y[0] - INaK::E_K) + I;
+
+  f[0] = -G_l * (y[0] - E_l) - it_tc_mod*iT - iNa - iK - ih  - iA - fac_gkl_TC * G_kl * (y[0] - INaK::E_K) + I  + DC ;
   // f[0] = -G_l * (y[0] - E_l) - iT -  ih - iNa - iK - iA -  G_kl * (y[0] - INaK::E_K) + I +DC;
   v_DEND = v_SOMA = y[0];
 
@@ -1062,7 +1064,7 @@ void CX_DEND::calc(double x, double *y, double *f){
 	ICa::calc(y[1], f[1], iHVA, x);
 	INap_CX::calc(y[8], f[8], y[0], x);
 
-	iDEND =  -G_l * (y[0] - E_l) - iHVA -  iKCa - fac_gkm_cx * iKm - iNa -iNap + I_Stim1 - 1.25* fac_gkl * G_kl * (y[0] - INaK::E_K);
+	iDEND =  -G_l * (y[0] - E_l) - iHVA -  iKCa - fac_gkm_cx * iKm - iNa -iNap + I_Stim1 - fac_gkl * G_kl * (y[0] - INaK::E_K);
 }
 
 //-------------------CX CELL (SOMA)-------------------------------------

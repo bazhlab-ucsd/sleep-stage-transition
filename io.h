@@ -57,7 +57,9 @@ void load_input_params(
   double& ach_cx_awake,
   double& ach_th_awake,
   double& ha_awake,
-  double& dc_tc
+  double& it_re_mod,
+  double& it_tc_mod
+  
 );
 
 

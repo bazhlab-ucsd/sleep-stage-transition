@@ -85,12 +85,12 @@ double fac_AMPA_TC;
 double fac_GABA_D2;
 double fac_GABA_TC;
 
-double DC_TC;
-
+double it_re_mod; 
+double it_tc_mod; 
 
 
 // Add variables for stimulation
-double stim_cx_start, stim_cx_end, stim_cx_strength, stim_in_start, stim_in_end, stim_in_strength, stim_tc_start, stim_tc_end, stim_tc_strength, stim_re_start, stim_re_end, stim_re_strength, ach_cx_awake, ach_th_awake, ha_awake, dc_tc; 
+double stim_cx_start, stim_cx_end, stim_cx_strength, stim_in_start, stim_in_end, stim_in_strength, stim_tc_start, stim_tc_end, stim_tc_strength, stim_re_start, stim_re_end, stim_re_strength, ach_cx_awake, ach_th_awake, ha_awake; 
 
 int stim_cx_start_neuron, stim_cx_end_neuron, stim_in_start_neuron, stim_in_end_neuron,  stim_tc_start_neuron, stim_tc_end_neuron, stim_re_start_neuron, stim_re_end_neuron;
 
@@ -393,7 +393,7 @@ int main(int argc,char **argv){
   LocalFieldPotential LFP;
 
   load_input_data(argc,argv);
-  load_input_params(argc, argv, tmax, t3D, ttime, num_mp_threads, print_c_sten, fre_print_cs, LFP.local_field_effect, LFP.lfp_scale, LFP.num_field_layers, homeo.boost, homeo.amp_boost, homeo.con_boost, homeo.fre_boost, homeo.target_f, homeo.fre_window, homeo.num_regions, stim_cx_start, stim_cx_end, stim_cx_strength, stim_cx_start_neuron, stim_cx_end_neuron, stim_in_start, stim_in_end, stim_in_strength, stim_in_start_neuron, stim_in_end_neuron, stim_tc_start, stim_tc_end, stim_tc_strength, stim_tc_start_neuron, stim_tc_end_neuron, stim_re_start, stim_re_end, stim_re_strength, stim_re_start_neuron, stim_re_end_neuron, ach_cx_awake, ach_th_awake, ha_awake, dc_tc );
+  load_input_params(argc, argv, tmax, t3D, ttime, num_mp_threads, print_c_sten, fre_print_cs, LFP.local_field_effect, LFP.lfp_scale, LFP.num_field_layers, homeo.boost, homeo.amp_boost, homeo.con_boost, homeo.fre_boost, homeo.target_f, homeo.fre_window, homeo.num_regions, stim_cx_start, stim_cx_end, stim_cx_strength, stim_cx_start_neuron, stim_cx_end_neuron, stim_in_start, stim_in_end, stim_in_strength, stim_in_start_neuron, stim_in_end_neuron, stim_tc_start, stim_tc_end, stim_tc_strength, stim_tc_start_neuron, stim_tc_end_neuron, stim_re_start, stim_re_end, stim_re_strength, stim_re_start_neuron, stim_re_end_neuron, ach_cx_awake, ach_th_awake, ha_awake, it_re_mod, it_tc_mod );
 
   // seed random number generator with current second of execution
   // srand(time(NULL));
@@ -566,8 +566,8 @@ int main(int argc,char **argv){
   double rem_scale=0.9;
 
   /// gKl 
-  double gkl_awake         = ach_cx_awake*0.19; //correct1_func(awake_ach_fac ,0.0);
-  double gkl_awake_fix     = ach_cx_awake*0.19; //correct1_func(awake_ach_fac ,0.0);
+  double gkl_awake         = ach_cx_awake*0.1; //correct1_func(awake_ach_fac ,0.0);
+  double gkl_awake_fix     = ach_cx_awake*0.1; //correct1_func(awake_ach_fac ,0.0);
   double gkl_s2            = gkl_awake_fix*s2_scale; //0.35; //correct1_func(s2_ach_fac    ,0.0);
   double gkl_s3            = gkl_awake_fix*s3_scale; //0.60; //correct1_func(s3_ach_fac    ,0.0);
   double gkl_rem           = gkl_awake_fix*.9; //correct1_func(rem_ach_fac ,0.0);
@@ -645,9 +645,7 @@ int main(int argc,char **argv){
     // Check and set transition variables
     double tdiff;
 
-	DC_TC = dc_tc;
-	
-   if (t<awake_end) {
+    if (t<awake_end) {
       fac_AMPA_D2 = awake_AMPAd2;
       fac_AMPA_TC = awake_AMPA_TC;
       fac_GABA_D2 = awake_GABAd2;
