@@ -1,31 +1,48 @@
-all: mindcurrent
+# Variables
+CXX = g++
+CXXFLAGS = -g -O3 -Wall -fopenmp -lm
+TARGET = mindcurrent
+SOURCES = main.cpp CellSyn.cpp io.cpp currents.cpp network.cpp
+HEADERS = CellSyn.h currents.h io.h network.h
 
-mindcurrent: main.cpp CellSyn.cpp CellSyn.h currents.cpp currents.h io.cpp io.h network.h network.cpp
-	g++ -g -O3 -lm -Wall -fopenmp  main.cpp CellSyn.cpp io.cpp currents.cpp network.cpp -o mindcurrent
-	 #icpc -O3 -Wall -fopenmp main.cpp CellSyn.cpp io.cpp currents.cpp network.cpp -o mindcurrent
+# Default target
+.PHONY: all
+all: $(TARGET)
 
-#sanity check whether current version of code changes output (compared to previously stored test/.files)
-check: mindcurrent
-	./mindcurrent test/params.txt test connection_info2
+# Build the main target
+$(TARGET): $(SOURCES) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET)
+
+# Check correctness against stored test files
+.PHONY: check
+check: $(TARGET)
+	./$(TARGET) test/params.txt test connection_info2
 	cd test; for f in *; do diff -u $$f .$$f; done
 
-check-prepare: mindcurrent
-	./mindcurrent test/params.txt test connection_info2
-	cd test; for f in *; do cp -f  $$f .$$f; done
+# Prepare baseline test files
+.PHONY: check-prepare
+check-prepare: $(TARGET)
+	./$(TARGET) test/params.txt test connection_info2
+	cd test; for f in *; do cp -f $$f .$$f; done
 
-run: mindcurrent
-	./mindcurrent params.txt out connection_info2
+# Run the main executable
+.PHONY: run
+run: $(TARGET)
+	./$(TARGET) params.txt out connection_info2
 
+# Generate documentation
+.PHONY: doxy
 doxy:
 	doxygen ./docs/Doxyfile
 
-clean: 
-	-rm mindcurrent 
+# Clean up build files
+.PHONY: clean
+clean:
+	-rm -f $(TARGET) generate_network
 
+# Build the network binary
+.PHONY: network
 network:
-	g++ -O2 generate_network.cpp -o generate_network
-## commenting as build step doesnt need to run the network
-#	./generate_network $(network_config) $(mri_network) $(3D_subnet) $(3D_distance)> connection_info2
-
-
-
+	$(CXX) -O2 generate_network.cpp -o generate_network
+	# Uncomment the following line to run the network binary during the build
+	# ./generate_network $(network_config) $(mri_network) $(3D_subnet) $(3D_distance) > connection_info2
