@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 ofstream * ConnSummaryFile;
@@ -538,29 +539,74 @@ void Edges::generate_3D_connections(){ //generates geometry topology
     }//c
   }//generate_3Dconnections
 
+int main(int argc, char *argv[]) {
+    try {
+        // Validate input arguments
+        if (argc < 2 || argc > 4) {
+            std::cerr << "Usage: " << argv[0] << " <network_config_file> [<MRI_network_file> | <3D_distance_file> <3D_subnet_file>]\n";
+            return EXIT_FAILURE;
+        }
 
+        const char *config_file = argv[1];
 
-int main(int argc, char *argv[]){
-	if (argc==1){
-		throw std::invalid_argument("At least network configuration file should be provided");
-	}
-	char const *file  = argv[1];
-	parse_config(file);
-	//any commandline parameter taken as network connections file
-	if (argc==3)
-		CE.load_MRI_network(argv[2]); 		//connection file we get verbatim from ucsd group
-	else if (argc==4) {				//partly processed data from ucsd folks - only subnet and distances given
-		load_3D_subnet(argv[3]);
-		load_3D_distances(argv[2]);
-		CE.generate_3D_connections();
-	} else
-		CE.generate_connections(); 		//our own random connectivity
+        // Parse network configuration file
+        try {
+            parse_config(config_file);
+        } catch (const std::exception &e) {
+            std::cerr << "Error parsing configuration file: " << e.what() << '\n';
+            return EXIT_FAILURE;
+        }
 
-	CE.apply_synaptic_types();	//needed in case we need sample parameters for strength/mini_X parameters
-	//CE.dump_from_neuron_edges(4,20,20);
-	//CE.dump_from_neuron_edges(0,0,0,2);
-	CE.write_connections();
-	//CT.dump();
-	//CN.dump();
-	return 0;
+        // Handle input cases based on the number of arguments
+        if (argc == 3) {
+            // Load MRI network file
+            const char *mri_network_file = argv[2];
+            try {
+                CE.load_MRI_network(mri_network_file);
+            } catch (const std::exception &e) {
+                std::cerr << "Error loading MRI network file: " << e.what() << '\n';
+                return EXIT_FAILURE;
+            }
+        } else if (argc == 4) {
+            // Load 3D distance and subnet files
+            const char *distance_file = argv[2];
+            const char *subnet_file = argv[3];
+
+            try {
+                load_3D_distances(distance_file);
+                load_3D_subnet(subnet_file);
+                CE.generate_3D_connections();
+            } catch (const std::exception &e) {
+                std::cerr << "Error processing 3D files: " << e.what() << '\n';
+                return EXIT_FAILURE;
+            }
+        } else {
+            // Generate random connections
+            CE.generate_connections();
+        }
+
+        // Apply synaptic types
+        try {
+            CE.apply_synaptic_types();
+        } catch (const std::exception &e) {
+            std::cerr << "Error applying synaptic types: " << e.what() << '\n';
+            return EXIT_FAILURE;
+        }
+
+        // Write connections to output
+        try {
+            CE.write_connections();
+        } catch (const std::exception &e) {
+            std::cerr << "Error writing connections: " << e.what() << '\n';
+            return EXIT_FAILURE;
+        }
+
+        std::cout << "Operation completed successfully.\n";
+        return EXIT_SUCCESS;
+
+    } catch (const std::exception &e) {
+        // Catch unexpected exceptions
+        std::cerr << "An unexpected error occurred: " << e.what() << '\n';
+        return EXIT_FAILURE;
+    }
 }
